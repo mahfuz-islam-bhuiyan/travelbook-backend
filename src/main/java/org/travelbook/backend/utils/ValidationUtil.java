@@ -11,11 +11,11 @@ import java.util.regex.Pattern;
 public class ValidationUtil {
 
 
-    public static boolean isNotValidEmail(String phoneNoString) {
-        if (StringUtils.isEmpty(phoneNoString)) return true;
-
-        Pattern pattern = Pattern.compile("^\\d{11}$");
-        Matcher matcher = pattern.matcher(phoneNoString);
-        return !matcher.matches();
-    }
+//    public static boolean isNotValidEmail(String phoneNoString) {
+//        if (StringUtils.isEmpty(phoneNoString)) return true;
+//
+//        Pattern pattern = Pattern.compile("^\\d{11}$");
+//        Matcher matcher = pattern.matcher(phoneNoString);
+//        return !matcher.matches();
+//    }
 }

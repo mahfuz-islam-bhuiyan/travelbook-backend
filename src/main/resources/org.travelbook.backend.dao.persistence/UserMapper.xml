@@ -39,7 +39,7 @@
 
     <select id="isDuplicateEmail" parameterType="map" resultType="boolean">
         select exists(
-            select phoneNo
+            select email
             from user
                 where email = #{email}
                 group by email
