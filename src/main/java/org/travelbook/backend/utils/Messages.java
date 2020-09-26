@@ -1,4 +1,4 @@
-package org.travelbook.backend.dao.configs;
+package org.travelbook.backend.utils;
 
 public class Messages {
 

@@ -33,6 +33,10 @@
         </if>
 	</select>
 
+    <select id="getUserForAuth" parameterType="string" resultType="User">
+		select * from user where email = #{email}
+	</select>
+
     <select id="isDuplicateEmail" parameterType="map" resultType="boolean">
         select exists(
             select phoneNo

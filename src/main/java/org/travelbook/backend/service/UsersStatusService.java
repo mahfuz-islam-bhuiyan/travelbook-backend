@@ -3,7 +3,7 @@ package org.travelbook.backend.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.travelbook.backend.dao.configs.Messages;
+import org.travelbook.backend.utils.Messages;
 import org.travelbook.backend.dao.domain.TravelBookApiResponse;
 import org.travelbook.backend.dao.domain.UsersStatus;
 import org.travelbook.backend.dao.persistence.UsersStatusMapper;

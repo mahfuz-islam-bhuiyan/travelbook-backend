@@ -15,4 +15,6 @@ public interface UserMapper {
     User getByParam(Map<String, Object> param) throws TravelBookException;
 
     boolean isDuplicateEmail(Map<String, Object> param) throws TravelBookException;
+
+    public User getUserForAuth(String email) throws TravelBookException;
 }

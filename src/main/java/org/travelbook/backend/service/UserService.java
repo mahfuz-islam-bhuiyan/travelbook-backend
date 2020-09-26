@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.travelbook.backend.dao.configs.Messages;
+import org.travelbook.backend.utils.Messages;
 import org.travelbook.backend.dao.domain.TravelBookApiResponse;
 import org.travelbook.backend.dao.domain.User;
 import org.travelbook.backend.dao.persistence.UserMapper;
@@ -68,5 +68,9 @@ public class UserService {
         Map<String, Object> param = new HashMap<>();
         param.put("email", email);
         return getByParam(param);
+    }
+
+    public User getUserForAuth(String email) throws TravelBookException {
+        return StringUtils.isEmpty(email) ? null : userMapper.getUserForAuth(email);
     }
 }
