@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.travelbook.backend.dao.persistence.UsersStatusMapper">
+
+    <insert id="create" parameterType="UsersStatus" keyProperty="userStatusId" useGeneratedKeys="true">
+
+        INSERT INTO users_status
+        (userId,
+         statusMessage,
+         privacyStatusType,
+         locationId,
+         isPinned,
+         createTime,
+         updateTime)
+        VALUES (#{userId:INTEGER},
+                #{statusMessage:VARCHAR},
+                #{privacyStatusType:VARCHAR},
+                #{locationId:INTEGER},
+                #{isPinned:BOOLEAN},
+                SYSDATE(),
+                SYSDATE())
+    </insert>
+
+    <update id="update" parameterType="UsersStatus">
+        UPDATE users_status
+        SET statusMessage= #{statusMessage:VARCHAR},
+            privacyStatusType= #{privacyStatusType:VARCHAR},
+            locationId= #{locationId:INTEGER},
+            isPinned= #{isPinned:BOOLEAN},
+            updateTime= SYSDATE()
+        WHERE usersStatusId = #{usersStatusId:INTEGER}
+    </update>
+
+    <!--    <resultMap type="Version" id="allUserMap">-->
+    <!--        <result property="id" column="ID"/>-->
+    <!--    </resultMap>-->
+
+    <select id="getAll" parameterType="map" resultType="UsersStatus">
+		SELECT * FROM users_status
+	</select>
+
+    <select id="getByParam" parameterType="map" resultType="UsersStatus">
+		select * from users_status
+	</select>
+
+
+</mapper>
