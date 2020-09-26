@@ -12,8 +12,8 @@
 
     <typeAliases>
         <typeAlias alias="User" type="org.travelbook.backend.dao.domain.User"/>
-<!--        <typeAlias alias="UsersStatus" type="org.travelbook.backend.dao.domain.UsersStatus"/>-->
-<!--        <typeAlias alias="Location" type="org.travelbook.backend.dao.domain.Location"/>-->
+        <typeAlias alias="UsersStatus" type="org.travelbook.backend.dao.domain.UsersStatus"/>
+        <typeAlias alias="Location" type="org.travelbook.backend.dao.domain.Location"/>
 
     </typeAliases>
 </configuration>
