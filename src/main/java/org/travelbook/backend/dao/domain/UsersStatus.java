@@ -20,9 +20,17 @@ public class UsersStatus extends Base {
     @Setter
     private PrivacyStatusType privacyStatusType;
 
-    @Getter
-    @Setter
+//    @Getter
+//    @Setter
     private boolean isPinned;
+
+    public boolean getIsPinned() {
+        return isPinned;
+    }
+
+    public void setPinned(boolean pinned) {
+        isPinned = pinned;
+    }
 
     @Getter
     @Setter

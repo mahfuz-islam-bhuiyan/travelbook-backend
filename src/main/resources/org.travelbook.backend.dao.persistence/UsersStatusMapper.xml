@@ -54,7 +54,9 @@
 
         <if test="userId != null and userId > 0">AND us.userId = #{userId}</if>
         <if test="userStatusId != null and userStatusId > 0">AND us.userStatusId = #{userStatusId}</if>
-        ORDER BY us.updateTime DESC
+
+        <if test="userId != null and userId > 0">ORDER BY us.isPinned DESC, us.updateTime DESC</if>
+        <if test="userId == null">ORDER BY us.updateTime DESC</if>
 	</select>
 
     <select id="getByParam" parameterType="map" resultType="UsersStatus">
