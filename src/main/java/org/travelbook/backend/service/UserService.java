@@ -77,9 +77,6 @@ public class UserService {
     }
 
     public boolean isDuplicateEmail(String email) {
-        //TODO:
-//        if (ValidationUtil.isNotValidEmail(email)) return true;
-
         Map<String, Object> param = new HashMap<>();
         param.put("email", email);
         try {

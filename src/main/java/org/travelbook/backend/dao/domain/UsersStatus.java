@@ -21,15 +21,11 @@ public class UsersStatus extends Base {
     private PrivacyStatusType privacyStatusType;
 
 //    @Getter
-//    @Setter
+    @Setter
     private boolean isPinned;
 
     public boolean getIsPinned() {
         return isPinned;
-    }
-
-    public void setPinned(boolean pinned) {
-        isPinned = pinned;
     }
 
     @Getter

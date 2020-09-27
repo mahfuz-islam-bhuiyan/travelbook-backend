@@ -56,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/",
                         "/actuator/**",
+                        "/status/",
                         "/user/",
                         "/user/authenticate").permitAll()
                 // all other requests need to be authenticated
