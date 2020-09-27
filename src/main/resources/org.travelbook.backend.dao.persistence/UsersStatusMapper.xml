@@ -14,10 +14,10 @@
          isPinned,
          createTime,
          updateTime)
-        VALUES (#{userId:INTEGER},
+        VALUES (#{user.userId:INTEGER},
                 #{statusMessage:VARCHAR},
                 #{privacyStatusType:VARCHAR},
-                #{locationId:INTEGER},
+                #{location.locationId:INTEGER},
                 #{isPinned:BOOLEAN},
                 SYSDATE(),
                 SYSDATE())
@@ -27,22 +27,40 @@
         UPDATE users_status
         SET statusMessage= #{statusMessage:VARCHAR},
             privacyStatusType= #{privacyStatusType:VARCHAR},
-            locationId= #{locationId:INTEGER},
+            locationId= #{location.locationId:INTEGER},
             isPinned= #{isPinned:BOOLEAN},
             updateTime= SYSDATE()
-        WHERE usersStatusId = #{usersStatusId:INTEGER}
+        WHERE userStatusId = #{userStatusId:INTEGER}
     </update>
 
-    <!--    <resultMap type="Version" id="allUserMap">-->
-    <!--        <result property="id" column="ID"/>-->
-    <!--    </resultMap>-->
+    <resultMap type="UsersStatus" id="UsersStatusMap">
+        <result property="user.userId" column="userId"/>
+        <result property="user.name" column="name"/>
+        <result property="location.locationId" column="locationId"/>
+        <result property="location.location" column="location"/>
+    </resultMap>
 
-    <select id="getAll" parameterType="map" resultType="UsersStatus">
-		SELECT * FROM users_status
+    <select id="getAll" parameterType="map" resultMap="UsersStatusMap">
+		SELECT
+		    us.userStatusId, us.statusMessage, us.privacyStatusType, us.isPinned, us.createTime, us.updateTime ,
+            u.userId, u.name,
+            lo.locationId, lo.location
+
+        FROM users_status us
+         INNER JOIN user u ON u.userId = us.userId
+         LEFT JOIN location lo ON lo.locationId = us.locationId
+        WHERE 1 = 1
+        <if test="userId == null and userStatusId == null">AND us.privacyStatusType = 'PUBLIC'</if>
+
+        <if test="userId != null and userId > 0">AND us.userId = #{userId}</if>
+        <if test="userStatusId != null and userStatusId > 0">AND us.userStatusId = #{userStatusId}</if>
+        ORDER BY us.updateTime DESC
 	</select>
 
     <select id="getByParam" parameterType="map" resultType="UsersStatus">
-		select * from users_status
+		select *
+		from users_status
+
 	</select>
 
 

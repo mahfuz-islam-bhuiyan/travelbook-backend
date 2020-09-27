@@ -12,7 +12,7 @@ public interface UsersStatusMapper {
 
     int update(UsersStatus usersStatus) throws TravelBookException;
 
-    ArrayList<UsersStatus> getAll() throws TravelBookException;
+    ArrayList<UsersStatus> getAll(Map<String, Object> param) throws TravelBookException;
 
     UsersStatus getByParam(Map<String, Object> param) throws TravelBookException;
 

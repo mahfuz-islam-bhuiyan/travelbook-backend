@@ -13,6 +13,7 @@ public class Messages {
     public static class Success {
         public static final String USER_CREATE_SUCCESSFUL = "User created successfully";
         public static final String USER_STATUS_CREATE_SUCCESSFUL = "Status created successfully";
+        public static final String USER_STATUS_UPDATE_SUCCESSFUL = "Status updated successfully";
 
     }
 

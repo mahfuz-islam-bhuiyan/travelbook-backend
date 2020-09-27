@@ -3,13 +3,15 @@ package org.travelbook.backend.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.travelbook.backend.utils.Messages;
+import org.springframework.util.CollectionUtils;
 import org.travelbook.backend.dao.domain.TravelBookApiResponse;
 import org.travelbook.backend.dao.domain.UsersStatus;
 import org.travelbook.backend.dao.persistence.UsersStatusMapper;
+import org.travelbook.backend.utils.Messages;
 import org.travelbook.backend.utils.TravelBookException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
@@ -42,18 +44,23 @@ public class UsersStatusService {
         } catch (TravelBookException e) {
             return apiResponse.getErrorApiResponse(log, Messages.Error.INVALID_INPUT, e);
         }
+        apiResponse.msg = Messages.Success.USER_STATUS_UPDATE_SUCCESSFUL;
 
         return apiResponse;
     }
 
-    public ArrayList<UsersStatus> getAll() throws TravelBookException {
-        return usersStatusMapper.getAll();
+    public ArrayList<UsersStatus> getAll(Map<String, Object> param) throws TravelBookException {
+        return usersStatusMapper.getAll(param);
     }
 
 
-    public UsersStatus getByParam(Map<String, Object> param) throws TravelBookException {
-        if (param != null)
-            return usersStatusMapper.getByParam(param);
-        return null;
+    public UsersStatus getByParam(Integer userStatusId) throws TravelBookException {
+        Map<String, Object> param = new HashMap<>();
+        param.put("userStatusId", userStatusId);
+        ArrayList<UsersStatus> usersStatuses = usersStatusMapper.getAll(param);
+
+        if (CollectionUtils.isEmpty(usersStatuses)) return null;
+
+        return usersStatuses.get(0);
     }
 }
